@@ -1,0 +1,13 @@
+{% extends 'default.html' %}
+
+{% block main %}
+<div class="container" data-aos="fade-up" data-aos-delay="100">
+    <h1>Новость</h1>
+    <hr>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Save"/>
+    </form>
+</div>
+{% endblock main %}

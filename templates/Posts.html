@@ -1,0 +1,97 @@
+{% extends 'default.html' %}
+
+{% block sitename %}
+<h1>Объявления</h1>
+{% endblock sitename %}
+
+{% block head %}
+<style>
+    table, th, td {
+      border: 1px solid black;
+    }
+    table.center {
+      margin-left: auto;
+      margin-right: auto;
+    }
+</style>
+{% endblock head %}
+
+
+{% block navmenu %}
+<li><a href="/logout/">Выйти</a></li>
+<li><a href="/login/">Войти</a></li>
+<li class="dropdown"><a href="#"><span>Меню</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+    <ul>
+        <li><a href="/">Объявления</a></li>
+        <li><a href="/messages/">Сообщения</a></li>
+    </ul>
+</li>
+{% endblock navmenu %}
+
+{% block main %}
+<hr size="10">
+{% if news %}
+<section id="services" class="services section">
+    <div class="container">
+        <div class="row gy-4">
+            {% for post in news %}
+            <div class="col-lg-4 col-md-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+                <div class="service-item  position-relative">
+                    <div class="icon">
+                        {% if post.сategory == 'TN' %}
+                        <i class="bi bi-shield-shaded"></i>
+                        {% endif %}
+
+                        {% if post.сategory == 'HL' %}
+                        <i class="bi bi-heart-half"></i>
+                        {% endif %}
+
+                        {% if post.сategory == 'DD' %}
+                        <i class="bi bi-lightning-charge"></i>
+                        {% endif %}
+
+                        {% if post.сategory == 'MC' %}
+                        <i class="bi bi-basket"></i>
+                        {% endif %}
+
+                        {% if post.сategory == 'GM' %}
+                        <i class="bi bi-people-fill"></i>
+                        {% endif %}
+
+                        {% if post.сategory == 'QG' %}
+                        <i class="bi bi-puzzle-fill"></i>
+                        {% endif %}
+
+                        {% if post.сategory == 'BS' %}
+                        <i class="bi bi-hammer"></i>
+                        {% endif %}
+
+                        {% if post.сategory == 'TR' %}
+                        <i class="bi bi-threads-fill"></i>
+                        {% endif %}
+
+                        {% if post.сategory == 'PM' %}
+                        <i class="bi bi-cup"></i>
+                        {% endif %}
+
+                        {% if post.сategory == 'SM' %}
+                        <i class="bi bi-magic"></i>
+                        {% endif %}
+                    </div>
+                    <a href="/posts/{{ post.id }}" class="stretched-link">
+                        <h3>{{ post.caption }}</h3>
+                    </a>
+                    <p>{{ post.text|truncatechars:50 }}</p>
+                </div>
+            </div><!-- End Service Item -->
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% else %}
+<h2>Объявлений пока нет</h2>
+{% endif %}
+
+{% endblock main %}
+
+

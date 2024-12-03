@@ -1,0 +1,59 @@
+{% extends 'default.html' %}
+
+{% block sitename %}
+<h1>Объявления</h1>
+{% endblock sitename %}
+
+{% block head %}
+<style>
+    table, th, td {
+      border: 1px solid black;
+    }
+    table.center {
+      margin-left: auto;
+      margin-right: auto;
+    }
+</style>
+{% endblock head %}
+
+{% block navmenu %}
+<li><a href="/logout/">Выйти</a></li>
+<li><a href="/login/">Войти</a></li>
+<li class="dropdown"><a href="#"><span>Меню</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+    <ul>
+        <li><a href="/">Объявления</a></li>
+        <li><a href="/messages/">Сообщения</a></li>
+    </ul>
+</li>
+{% endblock navmenu %}
+
+{% block main %}
+<hr size="10">
+{% if messages %}
+<section id="services" class="services section">
+    <div class="container">
+        <div class="row gy-4">
+           {% for message in messages %}
+           {% if message.post.author == res %}
+            <div class="col-lg-4 col-md-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+                <div class="service-item  position-relative">
+                    <a href="/messages/{{ message.id }}" class="stretched-link">
+                        <h3>{{ message.sender }} {{ message.datetime }}</h3>
+                    </a>
+                    <p>{{ message.post }}</p>
+                    <p>{{ message.receiver}}</p>
+                    <p>{{ message.text|truncatechars:50 }}</p>
+                </div>
+            </div><!-- End Service Item -->
+           {% endif %}
+           {% endfor %}
+        </div>
+    </div>
+</section>
+{% else %}
+<h2>Сообщений пока нет</h2>
+{% endif %}
+
+
+{% endblock main %}
+

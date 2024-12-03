@@ -1,0 +1,24 @@
+{% extends 'default.html' %}
+{% block sitename %}
+<h1>Регистрация</h1>
+{% endblock sitename %}
+{% block navmenu %}
+<li><a href="/logout/">Выйти</a></li>
+<li><a href="/login/">Войти</a></li>
+<li class="dropdown"><a href="#"><span>Меню</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+    <ul>
+        <li><a href="/">Объявления</a></li>
+        <li><a href="/messages/">Сообщения</a></li>
+    </ul>
+</li>
+{% endblock navmenu %}
+{% block main %}
+<div class="container" data-aos="fade-up" data-aos-delay="100">
+    <h2> Регистрация </h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Продолжить">
+    </form>
+</div>
+{% endblock main %}

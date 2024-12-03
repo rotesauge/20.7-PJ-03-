@@ -1,0 +1,58 @@
+{% extends 'default.html' %}
+
+{% block sitename %}
+{{ post.caption}}
+{% endblock sitename %}
+
+{% block head %}
+<style>
+    table, th, td {
+      border: 1px solid black;
+    }
+    table.center {
+      margin-left: auto;
+      margin-right: auto;
+    }
+</style>
+{% endblock head %}
+
+{% block navmenu %}
+<li><a href="/logout/">Выйти</a></li>
+<li><a href="/login/">Войти</a></li>
+<li class="dropdown"><a href="#"><span>Меню</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+    <ul>
+        <li><a href="/">Объявления</a></li>
+        <li><a href="/messages/">Сообщения</a></li>
+    </ul>
+</li>
+{% endblock navmenu %}
+
+{% block main %}
+<div class="container" data-aos="fade-up" data-aos-delay="100">
+    <table>
+        <tr>
+            <td><h3><i>{{ message.datetime}}</i></h3></td>
+            <td>
+                <h3 align="center"><b>
+                    <pre> От:  {{ message.sender}}  </pre>
+                </b></h3>
+            </td>
+            <td>
+                <h3 align="center"><b>
+                    <pre> Кому:  {{ message.receiver}}  </pre>
+                </b></h3>
+            </td>
+        </tr>
+        <tr>
+            <td><h3 align="justify "><i>{{ message.text}}</i></h3></td>
+            {% if message.accepted %}
+            <td>{{ message.text }}</td>
+            <td><h3>Принято</h3></td>
+            {% else %}
+            <td>{{ message.text }}</td>
+            <td><a href="/accept?msgid={{ message.id }}&postid={{ message.post.id }}">Принять</a></td>
+            {% endif %}
+        </tr>
+    </table>
+</div>
+{% endblock main %}

@@ -1,0 +1,37 @@
+{% extends 'default.html' %}
+
+{% block sitename %}
+<h1>ВХОД</h1>
+{% endblock sitename %}
+
+{% block navmenu %}
+<li><a href="/logout/">Выйти</a></li>
+<li><a href="/login/">Войти</a></li>
+<li class="dropdown"><a href="#"><span>Меню</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+    <ul>
+        <li><a href="/">Объявления</a></li>
+        <li><a href="/messages/">Сообщения</a></li>
+    </ul>
+</li>
+{% endblock navmenu %}
+{% block main %}
+<div class="container" data-aos="fade-up" data-aos-delay="100">
+    <h2> Войти в систему </h2>
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>{{ form.username.label_tag }}</td>
+                <td>{{ form.username }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.password.label_tag }}</td>
+                <td>{{ form.password }}</td>
+            </tr>
+        </table>
+
+        <input type="submit" value="Войти">
+    </form>
+    <button><a href="/signup"> Регистрация </a></button>
+</div>
+{% endblock main %}
